@@ -13,11 +13,11 @@ app.get('/article-one', function (req, res) {
   res.send("article one was requested and will be served");
 });
 
-app.get('/article-one', function (req, res) {
+app.get('/article-two', function (req, res) {
   res.send("article two was requested and will be served");
 });
 
-app.get('/article-one', function (req, res) {
+app.get('/article-three', function (req, res) {
   res.send("article three was requested and will be served");
 });
 app.get('/ui/style.css', function (req, res) {
