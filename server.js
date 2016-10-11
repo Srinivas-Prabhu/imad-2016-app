@@ -5,22 +5,40 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var articleOne = {
-  title: 'Article One | Srinivas Prabhu ', 
-  heading:'article-one',
-  date:'Sep 5, 2016',
-  content:` 
-                <p>
-                    This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
-                </p>
-                <p>
-                    This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
-                </p>
-                <p>
-                    This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
-                </p>
-            `
+var articles = {
+    'article-one':{
+      title: 'Article One | Srinivas Prabhu ', 
+      heading:'article-one',
+      date:'Sep 5, 2016',
+      content:` 
+                    <p>
+                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
+                    </p>
+                    <p>
+                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
+                    </p>
+                    <p>
+                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
+                    </p>`
+    },
+    'article-two': {
+            title: 'Article Two | Srinivas Prabhu ', 
+          heading:'article-two',
+          date:'Sep 5, 2016',
+          content:` 
+                        <p>
+                        This is the content of the second article
+                        </p>`
+    },
+   'article-three': {
+        title: 'Article Three | Srinivas Prabhu ', 
+          heading:'article-three',
+          date:'Sep 5, 2016',
+          content:` 
+                        <p>
+                        This is the content of the third article
+                        </p>`
+    }
 };
 
 function createtemplate (data){
@@ -64,17 +82,13 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(createtemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    // articleName == article-one
+    //articles[articleName] == {} content object for article one
+    var articleName = req.params.articleName;
+  res.send(createtemplate(articles[articleName]));
 });
 
-app.get('/article-two', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui','article-two.html'));
-});
-
-app.get('/article-three', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui','article-three.html'));
-});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
