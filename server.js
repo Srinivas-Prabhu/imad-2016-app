@@ -1,111 +1,83 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = require('pg').Pool;
-
-var config = {
-    user: 'srinivas-prabhu',
-    database: 'srinivas-prabhu',
-    host: 'db.imad.hasura-app.io',
-    port: '5432',
-    password: process.env.DB_PASSWORD
-};
 
 var app = express();
 app.use(morgan('combined'));
 
 var articles = {
-    'article-one':{
-      title: 'Article One | Srinivas Prabhu ', 
-      heading:'article-one',
-      date:'Sep 5, 2016',
-      content:` 
-                    <p>
-                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
+'article-1' : {
+  title: ' article-1 lannisters send their regards',
+  heading: 'ARTICLE -1' ,
+  date: 'sep 25 , 2016',
+  content:`                    <p>
+                        GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
                     </p>
                     <p>
-                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
+                        GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
                     </p>
                     <p>
-                        This is the content of the first article.This is the content of the first article.This is the content of the first article.This is the content of the first article.
-                    </p>`
-    },
-    'article-two': {
-            title: 'Article Two | Srinivas Prabhu ', 
-          heading:'article-two',
-          date:'Sep 5, 2016',
-          content:` 
-                        <p>
-                        This is the content of the second article
-                        </p>`
-    },
-   'article-three': {
-        title: 'Article Three | Srinivas Prabhu ', 
-          heading:'article-three',
-          date:'Sep 5, 2016',
-          content:` 
-                        <p>
-                        This is the content of the third article
-                        </p>`
-    }
+                        GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
+                    </p>` 
+},
+'article-2' : {
+    title: ' article-2 lannisters send their regards',
+  heading: 'ARTICLE -2' ,
+  date: 'sep 15 , 2016',
+  content:`            <p>
+                        GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
+                    </p>
+                    <p>
+                        GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
+                    </p>` },
+'article-3' : { 
+    title: ' article-3 lannisters send their regards',
+  heading: 'ARTICLE -3' ,
+  date: 'sep 5 , 2016',
+  content:`           <p>
+                  GAME OF THORNES rules this is the content of the webpage.GAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpageGAME OF THORNES rules this is the content of the webpage
+                   </p>`} 
 };
-
-function createtemplate (data){
+function createTemplate (data){
     var title = data.title;
-    var date =  data.date;
+    var date = data.date;
     var heading = data.heading;
     var content = data.content;
-    var htmlTemplate = `
-    <html>
-        <head>
-            <title>
-                ${title}
-            </title>
-            <link href="/ui/style.css" rel="stylesheet" />
-        </head>
-            <body>
-                <div class = "container">
-                    <div>
-                        <a href = "/">HOME</a>
-                    </div>
-                    <br />
-                    <h3>
-                        ${heading}
-                    </h3>
-                    <div>
-                        ${date}
-                    </div>
-                    <div>
-                        ${content}
-                    </div>
-                </div>
-            </body>
-    </html>
+var htmlTemplate = `<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+      <meta name="viewport" content="width-device-width , initial scale-1"> 
+      <link href="/ui/style.css" rel="stylesheet" />
+    </head>
     
-    `;
+    <body>
+        <div class="container">
+        <div>
 
+            <a href="/">Home</a>
+            
+            </div>
+        <h3>
+            ${heading}
+            </h3>
+            <div>
+                ${date}
+                </div>
+                <div>
+                   ${content}
+                </div>
+            </div>
+    </body>
+</html>
+`;
 return htmlTemplate;
 }
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
-var Pool = new Pool(config);
-app.get('/test-db', function(req,res){
-   // make a select request
-   // return a response with the results
-   pool.query('SELECT * FROM test', function(err, result) {
-       if(err){
-           res.status(500).send(err.toString());
-       }
-       else{
-           res.send(JSON.stringify(result));
-       }
-   });
-});
-
-
 var counter = 0;
 app.get('/counter', function(req,res){
    counter = counter + 1;
