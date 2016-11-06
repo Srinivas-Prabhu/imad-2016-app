@@ -14,7 +14,6 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
-
 function createTemplate (data){
     var title = data.title;
     var date =  data.date;
