@@ -57,7 +57,7 @@ function createTemplate (data) {
               <div id="comment_form">
               </div>
               <div id="comments">
-                <center>Loading comments.....</center>
+                <center>Loading comments...</center>
               </div>
           </div>
           <script type="text/javascript" src="/ui/article.js"></script>
@@ -207,7 +207,7 @@ app.post('/submit-comment/:articleName', function (req, res) {
             }
        });
     } else {
-        res.status(403).send('Only the logged in users can comment');
+        res.status(403).send('Only logged in users can comment');
     }
 });
 
