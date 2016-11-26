@@ -1,3 +1,143 @@
+@import "compass/css3";
+
+/*
+==================
+IMPORTS
+==================
+*/
+@import url(//fonts.googleapis.com/css?family=Rosario:400,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
+
+/*
+==================
+VARIABLES
+==================
+*/
+$black: #000;
+$red: #c00;
+$purple: #551a8b;
+$off: #0ff;
+$darkoff: darken($off, 25);
+$foofoo: #f00f00;
+$foffer: #f0ff32;
+$gray: #dcdcdc;
+
+/*
+==================
+EXTENDS
+==================
+*/
+%headers {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: .5em;
+}
+
+/*
+==================
+ANIMATIONS
+==================
+*/
+@-webkit-keyframes coloriffic {
+  0%,100% { color: $purple; }
+  20% { color: $red; }
+  40% { color: $off; }
+  60% { color: $foofoo; }
+  80% { color: $foffer; }
+}
+
+/*
+==================
+DEFAULTS
+==================
+*/
+body {
+  padding: 2em;
+  font: 16px Rosario, sans-serif;
+}
+/*
+img {
+  display: block;
+}
+*/
+h1 {
+  @extend %headers;
+  font-size: 3em;
+  text-align: right;
+  letter-spacing: 0.25em;
+}
+
+h2 {
+  @extend %headers;
+  font-size: 2em;
+}
+
+a {
+  display: inline-block;
+  color: $darkoff;
+  text-decoration: none;
+}
+
+p {
+  margin: 0.5em 0;
+  a {
+    @include transition(all .25s);
+    &:hover {
+      padding: 0 1em;
+      color: #fff;
+      background-color: $darkoff;
+    }
+  }
+}
+
+/*
+==================
+LAYOUT
+==================
+*/
+articles[role="profile"] h2{
+  @include transition(all .5s);
+  &:hover {
+    letter-spacing: .25em;
+    color: $purple;
+  }
+}
+
+.vitals {
+  li {
+    font-size: 1.75em;
+    font-family: Helvetica, Verdana, sans-serif;
+    overflow: hidden;
+    a {
+      display: block;
+      position: relative;
+
+      &:after {
+        font-size: 0.5em;
+        position: absolute;
+        left: -10em;
+        background: transparent;
+        padding: 0.25em 1.5em;
+        margin-top: 0.25em;
+        background: $darkoff;
+        color: #fff;
+        @include border-radius(10px);
+        @include opacity(0);
+        @include transition(all .5s);
+      }
+
+      &:hover:after {
+        left: 3em;
+        @include opacity(1);
+        @include animation(spinning 0.5s ease-in-out);
+      }
+      &.github:after {
+        content: "GitHub";
+      }
+    }
+  }
+}
+
 
 body {
     font-family: 'Gentium Basic',serif;
@@ -6,6 +146,8 @@ body {
 
 .center {
     text-align: center;
+
+
 }
 
 .text-big {
@@ -18,8 +160,13 @@ body {
 }
 
 .img-medium {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
     height: 200px;
+    width: 1000px;
+}
+
+.image-medium {
+    height: 300px;
+    width: 300px;
 }
 
 .container {
