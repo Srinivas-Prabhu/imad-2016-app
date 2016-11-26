@@ -39,11 +39,67 @@ ANIMATIONS
 ==================
 */
 @-webkit-keyframes coloriffic {
-  0%,100% { color: $purple; }
-  20% { color: $red; }
-  40% { color: $off; }
-  60% { color: $foofoo; }
-  80% { color: $foffer; }
+  0%,100% { color: #551a8b; }
+  20% { color: #c00; }
+  40% { color: #0ff; }
+  60% { color: #f00f00; }
+  80% { color: #f0ff32; }
+}
+@-moz-keyframes coloriffic {
+  0%,100% { color: #551a8b; }
+  20% { color: #c00; }
+  40% { color: #0ff; }
+  60% { color: #f00f00; }
+  80% { color: #f0ff32; }
+}
+@-o-keyframes coloriffic {
+  0%,100% { color: #551a8b; }
+  20% { color: #c00; }
+  40% { color: #0ff; }
+  60% { color: #f00f00o; }
+  80% { color: #f0ff32; }
+}
+@keyframes coloriffic {
+  0%,100% { color: #551a8b; }
+  20% { color: #c00; }
+  40% { color: #0ff; }
+  60% { color: #f00f00; }
+  80% { color: #f0ff32; }
+}
+
+
+@-webkit-keyframes fontbulge {
+  0%,100% { font-size: 2em; }
+  50% { font-size: 2.25em; }
+}
+@-moz-keyframes fontbulge {
+  0%,100% { font-size: 2em; }
+  50% { font-size: 2.25em; }
+}
+@-o-keyframes fontbulge {
+  0%,100% { font-size: 2em; }
+  50% { font-size: 2.25em; }
+}
+@keyframes fontbulge {
+  0%,100% { font-size: 2em; }
+  50% { font-size: 2.25em; }
+}
+
+@-webkit-keyframes spinning {
+  from {  @include rotateY(0deg);  }
+  to {  @include rotateY(-360deg);  }
+}
+@-moz-keyframes spinning {
+  from {  @include rotateY(0deg);  }
+  to {  @include rotateY(-360deg);  }
+}
+@-o-keyframes spinning {
+  from {  @include rotateY(0deg);  }
+  to {  @include rotateY(-360deg);  }
+}
+@keyframes spinning {
+  from {  @include rotateY(0deg);  }
+  to {  @include rotateY(-360deg);  }
 }
 
 /*
@@ -95,12 +151,6 @@ p {
 LAYOUT
 ==================
 */
-articles[role="profile"] h2{
-  @include transition(all .5s);
-  &:hover {
-    letter-spacing: .25em;
-    color: $purple;
-  }
 }
 
 .vitals {
